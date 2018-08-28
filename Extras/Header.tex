@@ -1,0 +1,162 @@
+% !TEX root =../main.tex
+
+\documentclass[%
+	a4paper,%				A4 Papier
+	oneside,%				einseitig
+	bibliography=totoc,%	Literaturverzeichnis einfügen
+	%bibtotocnumbered,% 	Literaturverzeichnis einfügen nummeriert
+	listof=totoc,%			Verzeichnisse einbinden in toc
+	index=totoc,%			Index ins Verzeichnis einfügen
+	parskip=half,%			europäischer Satz mit abstand zwischen Absätzen
+	chapterprefix=false,%	keine Ausgabe von 'Kapitel:'
+	%chapterprefix,%		Ausgabe von Kapitel und Anhang
+	headsepline,%			Linie nach Kopfzeile
+	%footsepline,%			Linie vor Fußzeile
+	12pt,%					grössere Schrift, besser lesbar am Bildschirm
+]{scrbook}
+
+%
+% Unterstützung für deutsche Sprache
+%
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[babel,german=quotes]{csquotes}
+
+%
+% Zeilenabstand
+%
+\usepackage[onehalfspacing]{setspace}
+
+%
+% Header leeren
+%
+\usepackage{scrlayer-scrpage}
+\pagestyle{plain.scrheadings}
+
+%
+% Ränder einstellen
+%
+\usepackage[
+	%showframe,% Seitenlayout anzeigen
+	left=3cm,
+	right=2.5cm,
+	top=2.5cm,
+	bottom=1.5cm,
+	%includeheadfoot
+]{geometry}
+\setlength{\footskip}{0.8cm}
+
+%
+% Schriftart
+%
+%\usepackage{bera}
+\usepackage{times}
+%\usepackage{palatino}
+
+%
+% Schriftgrößen für Überschriften anpassen
+%
+\setkomafont{chapter}{\fontsize{14bp}{18.8bp}\selectfont\bfseries}
+\setkomafont{section}{\fontsize{12bp}{18.8bp}\selectfont\bfseries}
+\setkomafont{subsection}{\fontsize{12bp}{18.8bp}\selectfont\bfseries}
+\setkomafont{subsubsection}{\fontsize{12bp}{18.8bp}\selectfont\bfseries}
+
+%
+% Pakete Literarische Quellen und Literaturverzeichnis
+%
+\usepackage[backend=biber,style=authoryear]{biblatex} % Stile: authoryear, alphabetic
+\bibliography{literatur}
+
+%
+% Paket um Grafiken einbetten zu können
+%
+\usepackage{graphicx}
+
+%
+% Paket um Text um Grafiken fließen lassen zu können
+%
+\usepackage{wrapfig}
+
+%
+% Paket für Querverweise
+%
+\usepackage[ngerman]{varioref}
+
+% 
+% Pakete für Tabellen
+%
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{booktabs}
+% Damit kann man an Stelle des p{BREITE} einfach L{Breite} für linksbündige,
+% C{BREITE} für zentrierte, und R{BREITE} für rechtsbündige Textausrichtung
+% verwenden.
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % linksbündig mit Breitenangabe
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}} % zentriert mit Breitenangabe
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}} % rechtsbündig mit Breitenangabe
+% Um innerhalb einer einzelnen Spalte eine andere Textausrichtung als die
+% vordefinierte nutzen zu können, werden folgende Befehle definiert.
+% Jetzt kann man innerhalb der gewünschten Spalte folgende Befehle vor den Text schreiben:
+%    \ctab = zentrierte Ausrichtung
+%    \rtab = rechtsbündige Ausrichtung
+%    \ltab = linksbündige Ausrichtung
+\newcommand{\ltab}{\raggedright\arraybackslash} % Tabellenabschnitt linksbündig
+\newcommand{\ctab}{\centering\arraybackslash} % Tabellenabschnitt zentriert
+\newcommand{\rtab}{\raggedleft\arraybackslash} % Tabellenabschnitt rechtsbündig
+
+%
+% Paket um Quellcode im Dokument zu formattieren
+%
+\usepackage{scrhack}
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{colBackround}{rgb}{0.753,0.753,0.753}
+\definecolor{colKeys}{rgb}{0,0,0}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{0,0,0}
+\definecolor{colString}{rgb}{0,0,0}
+\lstset{%
+    float=htbp,%
+    basicstyle=\texttt\small, %
+    identifierstyle=\color{colIdentifier}, %
+    keywordstyle=\color{colKeys}\textbf, %
+    stringstyle=\color{colString}\textit, %
+    commentstyle=\color{colComments}\textit, %
+    columns=flexible, %
+   tabsize=4, %
+    frame=single, %
+    extendedchars=true, %
+    showspaces=false, %
+    showstringspaces=false, %
+    numbers=left, %
+    numberstyle=\tiny, %
+    breaklines=true, %
+    backgroundcolor=\color{colBackround}, %
+    breakautoindent=true, %
+    captionpos=b%
+}
+
+%
+% Paket für Links innerhalb des PDF-Dokuments
+% (hyperref muss unbedingt vor harvard geladen werden)
+%
+\usepackage[pdfborder={0 0 0}]{hyperref}
+
+%
+% Pakete für spezielle Formatierungsprobleme
+%
+\usepackage{xspace}
+
+%
+% Selbst definierte Befehle
+%
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\term}[1]{\emph{#1}}
+\newcommand{\latex}{\LaTeX\xspace}
+\newcommand{\tex}{\TeX\xspace}
+
+%
+% Paket für Blindtext
+%
+\usepackage{blindtext}
